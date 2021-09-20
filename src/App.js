@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { Route, Switch } from "react-router-dom";
 import './App.css';
+import Heading from "./components/Heading";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import { ContextProvider } from "./context/GlobalContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className=" h-screen text-white text-center p-10">
+        <div className="container mx-auto h-full">
+          <ContextProvider>
+            <Heading />
+            <Switch>
+              <Route path="/add" component={TaskForm} />
+              <Route path="/edit/:id" component={TaskForm} />
+              <Route path="/" component={TaskList} />
+
+            </Switch>
+
+          </ContextProvider>
+
+        </div>
+
+
+      </div>
     </div>
+
+
   );
 }
 
